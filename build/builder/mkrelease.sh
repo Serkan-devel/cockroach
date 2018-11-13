@@ -63,6 +63,17 @@ case "${1-}" in
       SUFFIX=-linux-3.7.10-gnu-aarch64
     ) ;;
 
+
+  ?(arm32-)linux?(-gnueabi))
+    args=(
+      XGOOS=linux
+      XGOARCH=arm64
+      XCMAKE_SYSTEM_NAME=Linux
+      TARGET_TRIPLE=armhf-unknown-linux-gnueabi
+      LDFLAGS="-static-libgcc -static-libstdc++"
+      SUFFIX=-linux-3.7.10-gnu-armhf
+   ) ;;
+
   ?(amd64-)linux-msan)
     flags="-fsanitize=memory -fsanitize-memory-track-origins -fno-omit-frame-pointer -I/libcxx_msan/include -I/libcxx_msan/include/c++/v1"
     args=(
